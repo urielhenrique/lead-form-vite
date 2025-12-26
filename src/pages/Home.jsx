@@ -9,6 +9,8 @@ import {
   ArrowRight,
   CheckCircle2,
   AlertCircle,
+  Heart,
+  Briefcase,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -57,23 +59,38 @@ export default function Home() {
     {
       icon: Building2,
       title: "Direito Imobiliário",
-      description: "Assessoria em compra, venda e regularização de imóveis.",
+      description:
+        "Assessoria completa em compra, venda, locações e regularização de imóveis.",
     },
     {
       icon: Users2,
       title: "Direito Condominial",
       description:
-        "Consultoria para síndicos e gestão de conflitos em condomínios.",
+        "Consultoria para síndicos e administradoras, além de gestão de conflitos e cobranças.",
     },
     {
       icon: Landmark,
       title: "Direito Bancário",
-      description: "Defesa contra juros abusivos e revisões contratuais.",
+      description:
+        "Defesa contra juros abusivos, revisão de contratos bancários e combate a fraudes.",
     },
     {
       icon: ShieldCheck,
       title: "Direito Previdenciário",
-      description: "Planejamento, aposentadorias e benefícios do INSS.",
+      description:
+        "Planejamento previdenciário, pedidos de aposentadoria e benefícios por incapacidade.",
+    },
+    {
+      icon: Heart,
+      title: "Direito de Família",
+      description:
+        "Atuação em divórcios, partilha de bens, guarda de menores e inventários com sensibilidade.",
+    },
+    {
+      icon: Briefcase,
+      title: "Direito do Trabalho",
+      description:
+        "Defesa dos direitos do trabalhador, cálculos rescisórios e consultoria para empresas.",
     },
   ];
 
@@ -156,7 +173,7 @@ export default function Home() {
               Nossas Áreas de Atuação
             </h2>
           </div>
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-3 gap-8">
             {services.map((s, i) => (
               <Card
                 key={i}

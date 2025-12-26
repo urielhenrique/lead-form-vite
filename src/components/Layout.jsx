@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { motion } from "framer-motion";
 import { Menu, X, Phone, Instagram, Linkedin, Mail } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 export default function Layout({ children }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -17,10 +18,18 @@ export default function Layout({ children }) {
           <div className="flex gap-4">
             {" "}
             <span className="flex items-center gap-2">
-              <Phone className="w-3 h-3" /> Atendimento via WhatsApp
+              <a
+                href="https://wa.me/5531999587412?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20com%20um%20especialista%20da%20Gomides%20%26%20Gomes.%20Vim%20pelo%20site."
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                <FaWhatsapp className="w-4 h-4" />
+              </a>
+              Atendimento via WhatsApp
             </span>{" "}
             <span className="hidden md:flex items-center gap-2">
-              <Mail className="w-3 h-3" /> cgomides.adv@gmail.com
+              <Mail className="w-4 h-4" /> cgomides.adv@gmail.com
             </span>{" "}
           </div>{" "}
           <div className="flex gap-3">
@@ -32,9 +41,6 @@ export default function Layout({ children }) {
               className="hover:text-white transition-colors"
             >
               <Instagram className="w-4 h-4" />
-            </a>{" "}
-            <a href="#" className="hover:text-white transition-colors">
-              <Linkedin className="w-4 h-4" />
             </a>{" "}
           </div>{" "}
         </div>{" "}
@@ -223,12 +229,26 @@ export default function Layout({ children }) {
                 </li>{" "}
                 <li className="flex items-start gap-3">
                   {" "}
-                  <Phone className="w-5 h-5 text-[#b49b67] shrink-0 mt-0.5" />{" "}
+                  <a
+                    href="https://wa.me/5531999587412?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20com%20um%20especialista%20da%20Gomides%20%26%20Gomes.%20Vim%20pelo%20site."
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
+                    <FaWhatsapp className="w-5 h-5 text-[#b49b67] shrink-0 mt-0.5" />{" "}
+                  </a>
                   <span>(31) 99958-7412</span>{" "}
                 </li>{" "}
                 <li className="flex items-start gap-3">
                   {" "}
-                  <Instagram className="w-5 h-5 text-[#b49b67] shrink-0 mt-0.5" />{" "}
+                  <a
+                    href="https://www.instagram.com/gomidesegomes/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
+                    <Instagram className="w-5 h-5 text-[#b49b67] shrink-0 mt-0.5" />{" "}
+                  </a>
                   <span>@gomidesegomes</span>{" "}
                 </li>{" "}
               </ul>{" "}
