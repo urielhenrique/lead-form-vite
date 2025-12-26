@@ -158,7 +158,7 @@ export default function Home() {
       <section id="about" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <img
-            src="src/Escritorio gomides e gomes.jpeg"
+            src="/Escritorio gomides e gomes.jpeg"
             className="rounded shadow-xl"
             alt="Sobre"
           />
