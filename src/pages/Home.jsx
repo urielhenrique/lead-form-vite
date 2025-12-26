@@ -5,8 +5,6 @@ import {
   Users2,
   Landmark,
   ShieldCheck,
-  Scale,
-  ArrowRight,
   CheckCircle2,
   AlertCircle,
   Heart,
@@ -15,13 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { base44 } from "@/api/base44Client";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -34,15 +26,42 @@ export default function Home() {
     message: "",
   });
 
-  // Função para enviar os dados para o Base44
+  // Link do WhatsApp para os botões
+  const whatsappUrl =
+    "https://wa.me/5531999587412?text=Olá! Gostaria de agendar uma consulta.";
+
+  // Função para enviar os dados para o Google Sheets
+
   const createLeadMutation = useMutation({
-    mutationFn: (data) => base44.entities.Lead.create(data),
+    mutationFn: async (data) => {
+      const GOOGLE_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbyJv5dVsOWmSPux5GmLW6KNkxkyL4nZoZC_4PN9UYByGQxljyJg6IxAOy1Zu7Gd-RWy/exec"; // Cole aqui a URL que você copiou
+
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+
+        mode: "no-cors", // Necessário para evitar erros de CORS com Apps Script
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify(data),
+      });
+
+      return response;
+    },
+
     onSuccess: () => {
-      toast.success("Mensagem enviada com sucesso! Entraremos em contato.");
+      toast.success(
+        "Mensagem enviada com sucesso! Aguarde nosso contato ou nos chame no whatsapp."
+      );
+
       setFormData({ name: "", phone: "", email: "", message: "" });
     },
+
     onError: () => {
-      toast.error("Erro ao enviar. Verifique sua conexão.");
+      toast.error("Erro ao enviar. Tente novamente mais tarde.");
     },
   });
 
@@ -66,38 +85,41 @@ export default function Home() {
       icon: Users2,
       title: "Direito Condominial",
       description:
-        "Consultoria para síndicos e administradoras, além de gestão de conflitos e cobranças.",
+        "Consultoria para síndicos e administradoras, além de gestão de conflitos.",
     },
     {
       icon: Landmark,
       title: "Direito Bancário",
       description:
-        "Defesa contra juros abusivos, revisão de contratos bancários e combate a fraudes.",
+        "Defesa contra juros abusivos, revisão de contratos e combate a fraudes.",
     },
     {
       icon: ShieldCheck,
       title: "Direito Previdenciário",
       description:
-        "Planejamento previdenciário, pedidos de aposentadoria e benefícios por incapacidade.",
+        "Planejamento, pedidos de aposentadoria e benefícios por incapacidade.",
     },
     {
       icon: Heart,
       title: "Direito de Família",
       description:
-        "Atuação em divórcios, partilha de bens, guarda de menores e inventários com sensibilidade.",
+        "Divórcios, partilha de bens, guarda de menores e inventários.",
     },
     {
       icon: Briefcase,
       title: "Direito do Trabalho",
       description:
-        "Defesa dos direitos do trabalhador, cálculos rescisórios e consultoria para empresas.",
+        "Defesa dos direitos do trabalhador e consultoria empresarial.",
     },
   ];
 
   return (
     <div className="flex flex-col w-full">
-      {/* Hero Section */}
-      <section className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-[#0f172a]">
+      {/* Hero Section - ID 'home' adicionado para o scroll */}
+      <section
+        id="home"
+        className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-[#0f172a]"
+      >
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/95 via-[#0f172a]/80 to-[#0f172a]/40 z-10" />
           <img
@@ -122,6 +144,7 @@ export default function Home() {
             <div className="flex gap-4">
               <Button
                 size="lg"
+                onClick={() => window.open(whatsappUrl, "_blank")}
                 className="bg-[#b49b67] hover:bg-[#9a8455] rounded-none px-8"
               >
                 Agendar Consulta
@@ -131,11 +154,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Seção Sobre (id="about") */}
+      {/* Seções com IDs corretos para navegação */}
       <section id="about" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <img
-            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664"
+            src="src/Escritorio gomides e gomes.jpeg"
             className="rounded shadow-xl"
             alt="Sobre"
           />
@@ -148,7 +171,7 @@ export default function Home() {
             </h3>
             <p className="text-slate-600 mb-4">
               A Gomides & Gomes oferece atendimento personalizado e
-              transparente, com foco total no resultado para o cliente.
+              transparente.
             </p>
             <div className="space-y-3">
               {[
@@ -165,7 +188,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Seção Áreas (id="areas") */}
       <section id="areas" className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -192,14 +214,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Seção Contato (id="contact") */}
       <section id="contact" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
           <div>
             <h2 className="text-3xl font-serif font-bold mb-6">Fale Conosco</h2>
             <p className="text-slate-600 mb-8">
-              Estamos prontos para ouvir seu caso e oferecer a melhor estratégia
-              jurídica.
+              Estamos prontos para ouvir seu caso.
             </p>
             <div className="bg-amber-50 p-6 border-l-4 border-amber-400">
               <div className="flex items-center gap-2 text-amber-700 font-bold mb-2">
